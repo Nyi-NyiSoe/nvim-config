@@ -16,6 +16,7 @@ return {
 					"lua_ls",
 					"ts_ls",
 					"dart_ls",
+					"tailwindcss",
 				},
 			})
 		end,
@@ -103,11 +104,33 @@ return {
 			})
 
 			--------------------------------------------------
+			-- Tailwind CSS
+			--------------------------------------------------
+			vim.lsp.config("tailwindcss", {
+				capabilities = capabilities,
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+				},
+				settings = {
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								"className\\s*=\\s*['\"]([^'\"]*)['\"]",
+							},
+						},
+					},
+				},
+			})
+
+			--------------------------------------------------
 			-- Enable servers
 			--------------------------------------------------
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("ts_ls")
-      vim.lsp.enable("dartls")
+			vim.lsp.enable("dartls")
 		end,
 	},
 }
